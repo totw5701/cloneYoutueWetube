@@ -2,6 +2,7 @@
 # github가 node_modlue을 무시하도록 함
 node_modules   
 
+
 # Logs
 logs
 *.log
@@ -118,3 +119,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# 보안에 관련된거라 씹음
+package-lock.json
+package-lock.json
