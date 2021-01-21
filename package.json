@@ -1,0 +1,22 @@
+{
+  "name": "cloneyoutuewetube",
+  "version": "1.0.0",
+  "description": "cloning youtube wuth vanilaJS and NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totw5701/cloneYoutueWetube.git"
+  },
+  "author": "David oh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/totw5701/cloneYoutueWetube/issues"
+  },
+  "homepage": "https://github.com/totw5701/cloneYoutueWetube#readme",
+  "dependencies": {
+    "express": "^4.17.1"  
+  }
+}
