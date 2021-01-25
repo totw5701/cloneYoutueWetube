@@ -14,6 +14,7 @@ import routes from "./routes";
 
 const app = express();  
 
+app.set(`view engine`, "pug"); // pug! html을 가져오는 기능을 한다. MVP에서 View를 담당함. express의 view엔진! 디렉토리가 디폴트로 /views로 설정되어있으니 html을 이 폴더에 넣도록 하자. 
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(cookieParser());
@@ -21,8 +22,8 @@ app.use(bodyParser.json());//urlencoded는 지금 몰라도됨. 다 만든 다�
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(routes.home, globalRouter); // globalRouter에선 /search, /about 등등을 모아둘예정이에용. 
-app.use(routes.users, userRouter);  // 원래 이거였음 app.use("/users", userRouter); 
 app.use(routes.videos, videoRouter);  
+app.use(routes.users, userRouter);  // 원래 이거였음 app.use("/users", userRouter); 
 
 console.log(routes.editeProfile);
 
@@ -32,6 +33,10 @@ Model: data
 View: how does the data look
 Control: function that looks for the data 
 을 의미한다. 기술이라기 보다는 일종의 패턴이라고 생각하심대여.  위에 router들을 3개로 나눠놧지?
+
+
+#2.12
+PUG.JS는 controllor에 있는  function에서 html을 전송하도록 해준다.
 
 */
 
