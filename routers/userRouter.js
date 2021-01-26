@@ -15,9 +15,9 @@ userRouter.get("/password", (req, res) => res.send('user password'))
 const userRouter = express.Router();
 
 userRouter.get("/", users);
-userRouter.get(routes.userDetail, userDetail);
 userRouter.get(routes.editProfile, editProfile);
 userRouter.get(routes.changePassword, changePassword);
+userRouter.get(routes.userDetail, userDetail);
 
 
 export default userRouter;

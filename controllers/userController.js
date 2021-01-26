@@ -1,11 +1,11 @@
-export const home = (req, res) => res.render("home");
-export const users = (req, res) => res.render("users");
-export const join = (req, res) => res.render("join");
-export const login = (req, res) => res.render("login");
-export const logout = (req, res) => res.render("logout");
-export const userDetail = (req, res) => res.render("userDetail");
-export const editProfile = (req, res) => res.render("editProfile");
-export const changePassword = (req, res) => res.render("changePassword");
+export const home = (req, res) => res.render("home", {pageTitle: "Home"});  // render의 첫번째 인자는 템플릿이고 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체.
+export const users = (req, res) => res.render("users", {pageTitle: "Search"});
+export const join = (req, res) => res.render("join", {pageTitle: "Join"});
+export const login = (req, res) => res.render("login", {pageTitle: "Login"});
+export const logout = (req, res) => res.render("logout", {pageTitle: "Logout"});
+export const userDetail = (req, res) => res.render("userDetail", {pageTitle: "UserDetail"});
+export const editProfile = (req, res) => res.render("editProfile", {pageTitle: "EditProfile"});
+export const changePassword = (req, res) => res.render("changePassword", {pageTitle: "ChangePassword"});
 
 
 

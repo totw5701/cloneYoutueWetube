@@ -7,6 +7,7 @@ import morgan /* 닉네임 */ from "morgan";
 import helmet from "helmet";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import { localsMiddleware } from "./middlewares";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
@@ -14,12 +15,14 @@ import routes from "./routes";
 
 const app = express();  
 
-app.set(`view engine`, "pug"); // pug! html을 가져오는 기능을 한다. MVP에서 View를 담당함. express의 view엔진! 디렉토리가 디폴트로 /views로 설정되어있으니 html을 이 폴더에 넣도록 하자. 
 app.use(helmet());
-app.use(morgan("dev"));
+app.set(`view engine`, "pug"); // pug! html을 가져오는 기능을 한다. MVP에서 View를 담당함. express의 view엔진! 디렉토리가 디폴트로 /views로 설정되어있으니 html을 이 폴더에 넣도록 하자. 
 app.use(cookieParser());
 app.use(bodyParser.json());//urlencoded는 지금 몰라도됨. 다 만든 다음에 얘네 지워보면 얘네가 무슨일을 하는지 알게될것임.
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(morgan("dev"));
+
+app.use(localsMiddleware); // 로컬 변수를 글로벌 변수로 바꿔주는 미들웨어를 만들어보자. PUG 템플릿, 뷰 모두에서 javascript에서 정의한 변수를 쓰려면 이렇게 해야함
 
 app.use(routes.home, globalRouter); // globalRouter에선 /search, /about 등등을 모아둘예정이에용. 
 app.use(routes.videos, videoRouter);  
