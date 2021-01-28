@@ -1,4 +1,11 @@
 extends layouts/main
+include mixins/videoBlock
+
 block content
     .videos
-        h1 Video
+        each abcd in videos
+            +videoBlock({
+                title:abcd.title,
+                views:abcd.views,
+                videoFile:abcd.videoFile
+            })

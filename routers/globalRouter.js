@@ -1,14 +1,18 @@
 import express from "express";
 import routes from "../routes"; // ..은 밖 디렉토리로 나가는거
-import { search } from "../controllers/videoController";  //변수만 import할때는 이렇게 쓴다.
-import { home, join, login, logout } from "../controllers/userController";
+import { home, search } from "../controllers/videoController";  //변수만 import할때는 이렇게 쓴다.
+import { postJoin, getJoin, postLogin, getLogin, logout } from "../controllers/userController";
 
-const globalRouter = express.Router();  
+const globalRouter = express.Router();
+
+globalRouter.get(routes.join, getJoin);
+globalRouter.post(routes.join, postJoin);
+
+globalRouter.get(routes.login, getLogin);
+globalRouter.post(routes.login, postLogin);
 
 globalRouter.get(routes.home, home); 
 globalRouter.get(routes.search, search);
-globalRouter.get(routes.join, join);
-globalRouter.get(routes.login, login);
 globalRouter.get(routes.logout, logout);
 
 
