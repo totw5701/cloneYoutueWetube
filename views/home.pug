@@ -5,6 +5,7 @@ block content
     .videos
         each abcd in videos
             +videoBlock({
+                id:abcd.id,
                 title:abcd.title,
                 views:abcd.views,
                 videoFile:abcd.videoFile

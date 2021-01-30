@@ -1,4 +1,5 @@
 import {videos} from "../db"
+import routes from "../routes"
 
 
 export const home = (req, res) => res.render("home", {pageTitle: "Home", videos:videos});  // home이라는 pug 파일을 찾아서 보여줄것임.
@@ -10,7 +11,16 @@ export const search = (req, res) => {
     res.render("search", { pageTitle: "search", searchingBy: searchingBy,videos:videos});
 
 }
-export const upload = (req, res) => res.render("upload", { pageTitle: "upload"});
+export const getUpload = (req, res) => res.render("upload", { pageTitle: "upload"});
+export const postUpload = (req, res) => {
+    const {
+        body: {file, title, description}
+    } = req;
+    // To Do: Upload and save video
+    res.redirect(routes.videoDetail(32439));
+}
+
+
 export const videoDetail = (req, res) => res.render("videoDetail", { pageTitle: "videoDetail"});
 
 
