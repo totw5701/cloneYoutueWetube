@@ -124,3 +124,5 @@ dist
 # 보안에 관련된거라 씹음
 package-lock.json
 package-lock.json
+
+uploads
