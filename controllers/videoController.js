@@ -43,12 +43,19 @@ export const search = (req, res) => {
 
 }
 export const getUpload = (req, res) => res.render("upload", { pageTitle: "upload"});
-export const postUpload = (req, res) => {
+export const postUpload = async(req, res) => {
     const {
-        body: {file, title, description}
+        body: {title, description},
+        file: {path}
     } = req;
-    // To Do: Upload and save video
-    res.redirect(routes.videoDetail(32439));
+    const newVideo = await Video.create({     //Video.create 이거 mongoose 명령어다.
+        fileUrl: path,
+        title,
+        description
+    })
+    console.log(newVideo)
+
+    res.redirect(routes.videoDetail(newVideo.id));
 }
 
 

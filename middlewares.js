@@ -1,4 +1,7 @@
 import routes from "./routes";
+import multer from "multer";
+
+const multerVideo = multer({dest: "uploads/videos/" });  // multer: express의 middleware로서 upload할때 쓰인다. dest = destination 저장위치
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "WeTube";      // 필요한 pug으로 가서 #{siteName} 하면 WeTube 호출함.
@@ -9,3 +12,6 @@ export const localsMiddleware = (req, res, next) => {
     }
     next();
 };
+
+export const uploadVideo = multerVideo.single(`videoFile`);  //single은 오직 하나의 파일만 업로드 할 수 있음을 의미. 얘는 req.file에 정보를 넣어준다.
+ 
