@@ -59,10 +59,51 @@ export const postUpload = async(req, res) => {
 }
 
 
-export const videoDetail = (req, res) => res.render("videoDetail", { pageTitle: "videoDetail"});
+export const videoDetail = async(req, res) => {
+    console.log(req.params);  // URL로 부터 정보를 가져오는 방법이다. route에서 :로 지정된 변수를 받아온다. 지금은 :id로 되어있으니까 id값을 받아온다.
+
+    const {
+        params: {id}
+    } = req;    // URL에서 id를 받아 함수로 지정하였고
+
+    try{
+        const video = await Video.findById(id);   // mongoose를 이용해 id값으로 video DB롤 특정지어 받아온다.
+        res.render("videoDetail", { pageTitle: "videoDetail", video}); // 그렇게 받아온 video를 pug에 보낸다.
+    } catch(error) {
+        res.redirect(routes.home);
+    }
+
+}
 
 
-export const editVideo = (req, res) => res.render("editVideo", { pageTitle: "editVideo"});
+export const getEditVideo = async(req, res) => {
+    const {
+        params: {id}
+    } = req;
+
+    try{
+        const video = await Video.findById(id);
+        res.render("editVideo", { pageTitle: `Edit ${video.title}`, video});
+    } catch(error) {
+        res.redirect(routes.home);
+    }
+}
+
+export const postEditVideo = async(req, res) =>{
+    const {
+        params: {id},
+        body: {title, description}
+    } = req;   //URL에서 id정보를 받아오고 post된 정보에서 title과 description을 선언하였다.
+
+    try{
+        await Video.findOneAndUpdate({_id:id},{title, description} )  // title:title 이렇게 써도 ㄱㅊ  id는 mongoose안에 _id 이렇게 저장되어있으니까 _id로 써줘야한다.
+        res.redirect(routes.videoDetail(id))
+    } catch(error){
+        res.redirect(routes.home);
+    }
+
+};
+
 export const deleteVideo = (req, res) => res.render("deleteVideo", { pageTitle: "deleteVideo"});
 
 
